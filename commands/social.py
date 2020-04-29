@@ -5,8 +5,6 @@ import re
 import os
 from random import randint
 import threading
-import giphy_client
-from giphy_client.rest import ApiException
 import sys
 import mimetypes
 
