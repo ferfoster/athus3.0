@@ -89,43 +89,45 @@ class Module(object):
     def handle_message(self, message, name_sender, id_sender):
         if '/help' in message:
             t_help = threading.Thread(
-                target=self.social.help(message=message, name_sender=name_sender))
+                target=self.social.help, args=(message, name_sender))
             t_help.start()
         elif '/admin' in message:
             t_admin = threading.Thread(
-                target=self.configuration.admin(message=message, name_sender=name_sender))
+                target=self.configuration.admin, args=(message, name_sender))
             t_admin.start()
         elif '/adm_list' in message:
             t_listAdmin = threading.Thread(
-                target=self.configuration.listAdmin(message=message, name_sender=name_sender))
+                target=self.configuration.listAdmin, args=(message, name_sender))
             t_listAdmin.start()
         elif '/gif' in message:
             t_ghipy = threading.Thread(
-                target=self.social.ghipy(message=message, name_sender=name_sender, id_sender=id_sender))
+                target=self.social.ghipy, args=(message, name_sender, id_sender))
             t_ghipy.start()
         elif '/add' in message:
             t_music = threading.Thread(
-                target=self.music.playlist(message=message, name_sender=name_sender, id_sender=id_sender))
+                target=self.music.playlist, args=(message, name_sender, id_sender))
             t_music.start()
         elif '/play' in message:
+            print('iniciando thread 1')
             t_play = threading.Thread(
-                target=self.music.play())
+                target=self.music.thPlay)
             t_play.start()
+            print('saindo thread 1')
         elif '/pause' in message:
             t_pause = threading.Thread(
-                target=self.music.pause_playlist())
+                target=self.music.pause_playlist)
             t_pause.start()
         elif '/skip' in message:
             t_skip = threading.Thread(
-                target=self.music.skip_playlist())
+                target=self.music.skip_playlist)
             t_skip.start()
         elif '/queue' in message:
             t_next = threading.Thread(
-                target=self.music.next())
+                target=self.music.next)
             t_next.start()
         elif '/post_music' in message:
             t_music_help = threading.Thread(
-                target=self.music.music_help(message=message, name_sender=name_sender))
+                target=self.music.music_help, args=(message, name_sender))
             t_music_help.start()
 
 
@@ -134,31 +136,31 @@ class Module(object):
             self.leave_room() # deixa a sala
             return True
         elif '/say' in message:
-            t_mensagemprivate = threading.Thread(target=self.social.mensagemprivate(message, name_sender, id_sender))
+            t_mensagemprivate = threading.Thread(target=self.social.mensagemprivate, args=(message, name_sender, id_sender))
             t_mensagemprivate.start()
         elif '/add' in message:
             t_music = threading.Thread(
-                target=self.music.playlist_anonimo(message, name_sender,id_sender))
+                target=self.music.playlist_anonimo, args=(message, name_sender,id_sender))
             t_music.start()
         elif '/groom' in message:
             self.admin.groom(new_host_id=id_sender)
         elif '/time_up' in message:
             self.configuration.Online()
         elif '/kloop' in message:
-            t_loop = threading.Thread(target=self.configuration.loop_msg())
+            t_loop = threading.Thread(target=self.configuration.loop_msg)
             t_loop.start()
         elif '/kick' in message:
-            t_adm_k = threading.Thread(target=self.admin.admin_kick(message, name_sender, tripcode, id_sender))
+            t_adm_k = threading.Thread(target=self.admin.admin_kick, args=(message, name_sender, tripcode, id_sender))
             t_adm_k.start()
         elif '/ban' in message:
-            t_adm_ban = threading.Thread(target=self.admin.admin_ban(message, name_sender, tripcode, id_sender))
+            t_adm_ban = threading.Thread(target=self.admin.admin_ban, args=(message, name_sender, tripcode, id_sender))
             t_adm_ban.start()
         elif'/github' in message:
             self.configuration.merchan()
         elif'/room_name' in message:
-            t_adm_name = threading.Thread(target=self.admin.setRomm_name(message, tripcode))
+            t_adm_name = threading.Thread(target=self.admin.setRomm_name, args=(message, tripcode))
             t_adm_name.start()
         elif'/room_info' in message:
-            t_adm_description = threading.Thread(target=self.admin.setRomm_Description(message, tripcode))
+            t_adm_description = threading.Thread(target=self.admin.setRomm_Description, args=(message, tripcode))
             t_adm_description.start()
         return False

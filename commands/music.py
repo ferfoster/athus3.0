@@ -104,6 +104,12 @@ class musicSistem(object):
             url=self.host, data=share_music_body)
         p.close()
 
+    def thPlay(self):
+        print(' iniciando thread 2')
+        t_start = threading.Thread(target=self.play())
+        t_start.start()
+        print('acabando thread 2')
+
     def play(self):
         if self.playStatus == False:
             self.playStatus = True
@@ -246,18 +252,20 @@ class musicSistem(object):
 
     def playlist_anonimo(self, message, name_sender, id_sender):
         commandName = 'music'
+        uploader_classes = {
+        "catbox": CatboxUploader,
+        "fileio": FileioUploader}
         if self.spam[commandName] == False:
 
-            def upload(self, filename):
-                # novo hospedagem de dados
-                uploader_class = Uploader.uploadGofile(filename=filename)
-                result = Uploader.validator(
-                    result=uploader_class[0], filename=uploader_class[1])
-                print("Your link : {}".format(result))
-                # self.share_music(url=result,name=self.music_info['title'])
+            def upload(self, host, name):
+                uploader_class = uploader_classes[host]
+                uploader_instance = uploader_class(name)
+                print(name)
+                result = uploader_instance.execute()
+
                 self.paylist.append(result)
                 self.paylist_duration.append(self.music_info['duration'])
-                self.paylist_title.append("NONE")
+                self.paylist_title.append('NONE')
                 os.remove("./cache/music_1.mp3")
 
             def sand_music(self, message):
@@ -277,7 +285,8 @@ class musicSistem(object):
                                     message="/me Musica cancelada devido a sua duração.!")
                                 self.avoid_spam(commandName)
                                 return
-                    except Exception:
+                    except Exception as e:
+                        print(e)
                         self.post(message="/me Erro Link Invalido")
                         self.avoid_spam(commandName)
                         return
@@ -300,11 +309,12 @@ class musicSistem(object):
                             filenames = ([link])
                             ydl.download(filenames)
                             self.music_info = info
-                        upload(self, filename=self.name)
+                        upload(self,host = 'catbox', name = '{}'.format(self.name))
                         self.avoid_spam(commandName)
                         self.post(
                             message="/me @{}▷Musica Colocada na Playlist...▷".format(name_sender))
                     except Exception as e:
+                        print(e)
                         self.post(message="/me Erro Link Invalido")
                         self.avoid_spam(commandName)
             self.spam[commandName] = True
