@@ -1,0 +1,15 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+
+
+[packages]
+
+youtube_dl ="*"
+click ="*"
+requests-toolbelt ="*"
+
+[requires]
+
+python_version = "3.8.1"

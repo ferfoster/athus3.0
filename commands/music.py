@@ -105,10 +105,8 @@ class musicSistem(object):
         p.close()
 
     def thPlay(self):
-        print(' iniciando thread 2')
         t_start = threading.Thread(target=self.play())
         t_start.start()
-        print('acabando thread 2')
 
     def play(self):
         if self.playStatus == False:

@@ -109,11 +109,9 @@ class Module(object):
                 target=self.music.playlist, args=(message, name_sender, id_sender))
             t_music.start()
         elif '/play' == command:
-            print('iniciando thread 1')
             t_play = threading.Thread(
                 target=self.music.thPlay)
             t_play.start()
-            print('saindo thread 1')
         elif '/pause' == command:
             t_pause = threading.Thread(
                 target=self.music.pause_playlist)
