@@ -87,15 +87,16 @@ class Module(object):
             ru.close()
 
     def handle_message(self, message, name_sender, id_sender):
-        if '/help' in message:
+        command = message[1:]
+        if '/help' == command:
             t_help = threading.Thread(
                 target=self.social.help, args=(message, name_sender))
             t_help.start()
-        elif '/admin' in message:
+        elif '/admin' == command:
             t_admin = threading.Thread(
                 target=self.configuration.admin, args=(message, name_sender))
             t_admin.start()
-        elif '/adm_list' in message:
+        elif '/admin list' == command:
             t_listAdmin = threading.Thread(
                 target=self.configuration.listAdmin, args=(message, name_sender))
             t_listAdmin.start()
@@ -107,32 +108,33 @@ class Module(object):
             t_music = threading.Thread(
                 target=self.music.playlist, args=(message, name_sender, id_sender))
             t_music.start()
-        elif '/play' in message:
+        elif '/play' == command:
             print('iniciando thread 1')
             t_play = threading.Thread(
                 target=self.music.thPlay)
             t_play.start()
             print('saindo thread 1')
-        elif '/pause' in message:
+        elif '/pause' == command:
             t_pause = threading.Thread(
                 target=self.music.pause_playlist)
             t_pause.start()
-        elif '/skip' in message:
+        elif '/skip' == command:
             t_skip = threading.Thread(
                 target=self.music.skip_playlist)
             t_skip.start()
-        elif '/queue' in message:
+        elif '/queue' == command:
             t_next = threading.Thread(
                 target=self.music.next)
             t_next.start()
-        elif '/post_music' in message:
+        elif '/help music' == command:
             t_music_help = threading.Thread(
                 target=self.music.music_help, args=(message, name_sender))
             t_music_help.start()
 
 
     def handle_private_message(self, message, id_sender, name_sender, tripcode):
-        if '/koi' in message:
+        command = message[1:]
+        if '/koi' == command:
             self.leave_room() # deixa a sala
             return True
         elif '/say' in message:
@@ -142,11 +144,11 @@ class Module(object):
             t_music = threading.Thread(
                 target=self.music.playlist_anonimo, args=(message, name_sender,id_sender))
             t_music.start()
-        elif '/groom' in message:
+        elif '/groom'  == command:
             self.admin.groom(new_host_id=id_sender)
-        elif '/time_up' in message:
+        elif '/time up'  == command:
             self.configuration.Online()
-        elif '/kloop' in message:
+        elif '/kloop' == command:
             t_loop = threading.Thread(target=self.configuration.loop_msg)
             t_loop.start()
         elif '/kick' in message:
@@ -155,7 +157,7 @@ class Module(object):
         elif '/ban' in message:
             t_adm_ban = threading.Thread(target=self.admin.admin_ban, args=(message, name_sender, tripcode, id_sender))
             t_adm_ban.start()
-        elif'/github' in message:
+        elif'/github' == command:
             self.configuration.merchan()
         elif'/room_name' in message:
             t_adm_name = threading.Thread(target=self.admin.setRomm_name, args=(message, tripcode))

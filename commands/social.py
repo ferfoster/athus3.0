@@ -42,7 +42,7 @@ class Commands(object):
         if self.spam[commandName] == False:
             try:
                 self.post(
-                    message="|==Comandos==|\n |/help|\n |/gif naruto|\n |/add music(ID)|\n|/play|\n|/skip|\n|/pause|\n|/queue|\n|/post_music|")
+                    message="|==Comandos==|\n |/help|\n |/gif naruto|\n |/add music(ID)|\n|/play|\n|/skip|\n|/pause|\n|/queue|\n|/help music|")
                 self.spam[commandName] = True
                 self.avoid_spam(commandName)
             except Exception as e:
