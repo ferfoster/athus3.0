@@ -49,9 +49,10 @@ class CatboxUploader(Uploader):
     def execute(self):
         file = open('./cache/{}'.format(self.filename), 'rb')
         try:
+        	#rash: f30cb59306e2d72a0e958cbec
             data = {
                 'reqtype': 'fileupload',
-                'userhash': 'f30cb59306e2d72a0e958cbec',
+                'userhash': '',
                 'fileToUpload': (file.name, file)
             }
             response = self._multipart_post(data)
