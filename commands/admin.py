@@ -13,7 +13,7 @@ class admininstrator(object):
         self.session = requests.session()
         self.host = 'https://drrr.com/room/?ajax=1'
         self.admin_list = ['kvh9Z.O9\/w', 'TqOzGmy5V.',
-            'YJMpA.Wge2', 'NICKx2f4bE', 'vaW3kagV3.','A5w2NY1dws']
+            'YJMpA.Wge2', 'NICKx2f4bE', 'vaW3kagV3.','A5w2NY1dws','hbX\/xjnbYc']
         self.file = open(file_name, 'r')
         self.session.cookies.update(eval(self.file.read()))
         self.file.close()

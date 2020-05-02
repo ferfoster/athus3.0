@@ -47,7 +47,7 @@ class Config(object):
         commandName = 'admin_list'
         if self.spam[commandName] == False:
             self.post(
-                message="|==ADMIN's==| \n |@londarks|\n |@alim|\n |@NICK!|\n |@jenni|\n |@NEKO|\n |@100sentido|")
+                message="|==ADMIN's==| \n |@londarks|\n |@NICK!|\n |@alim|\n |@MECK!|\n |@jenni|\n |@NEKO|\n |@100sentido|")
             self.spam[commandName] = True
             self.avoid_spam(commandName)
 
