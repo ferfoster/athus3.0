@@ -13,7 +13,7 @@ class admininstrator(object):
         self.session = requests.session()
         self.host = 'https://drrr.com/room/?ajax=1'
         self.admin_list = ['kvh9Z.O9\/w', 'TqOzGmy5V.',
-            'YJMpA.Wge2', 'NICKx2f4bE', 'vaW3kagV3.','A5w2NY1dws','hbX\/xjnbYc']
+            'YJMpA.Wge2', 'NICKx2f4bE', 'vaW3kagV3.','A5w2NY1dws','hbX\/xjnbYc','.NEAR.hyA6']
         self.file = open(file_name, 'r')
         self.session.cookies.update(eval(self.file.read()))
         self.file.close()
@@ -78,22 +78,15 @@ class admininstrator(object):
         nh = self.session.post(self.host, new_host_body)
         nh.close()
 
-    def groom(self, new_host_id):
-        new_host_body = {
-            'new_host': new_host_id
-        }
-        nh = self.session.post(self.host, new_host_body)
-        nh.close()
+    def groom(self, new_host_id, tripcode):
+        for i in range(len(self.admin_list)):
+            if tripcode == self.admin_list[i]:
+                new_host_body = {
+                    'new_host': new_host_id
+                }
+                nh = self.session.post(self.host, new_host_body)
+                nh.close()
         return True
-
-    def groom(self,new_host_id):
-        new_host_body = {
-            'new_host': new_host_id
-        }
-        nh = self.session.post(self.host, new_host_body)
-        nh.close()
-        return True
-
         
     def admin_kick(self, message, name_sender, tripcode, id_sender):
         for i in range(len(self.admin_list)):

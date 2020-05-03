@@ -13,12 +13,13 @@ ts_last_greeting = 0
 
 
 class Module(object):
-    def __init__(self, social, music, admin, configuration):
+    def __init__(self, social, music, admin, configuration, porn):
         self.session = requests.session()
         self.social = social
         self.music = music
         self.admin = admin
         self.configuration = configuration
+        self.porn = porn
 
     def load_cookie(self, file_name):
         f = open(file_name, 'r')
@@ -104,6 +105,14 @@ class Module(object):
             t_ghipy = threading.Thread(
                 target=self.social.ghipy, args=(message, name_sender, id_sender))
             t_ghipy.start()
+        elif '/pif' in message:
+            t_ghipy = threading.Thread(
+                target=self.social.gifid, args=(message, name_sender, id_sender))
+            t_ghipy.start()
+        # elif '/porn' in message:
+        #     t_ghipy = threading.Thread(
+        #         target=self.porn.gifporn, args=(message, name_sender, id_sender))
+        #     t_ghipy.start()
         elif '/add' in message:
             t_music = threading.Thread(
                 target=self.music.playlist, args=(message, name_sender, id_sender))
@@ -143,11 +152,9 @@ class Module(object):
                 target=self.music.playlist_anonimo, args=(message, name_sender,id_sender))
             t_music.start()
         elif '/groom'  == command:
-            self.admin.groom(new_host_id=id_sender)
-        elif '/time up'  == command:
-            self.configuration.Online()
+            self.admin.groom(new_host_id=id_sender, tripcode=tripcode)
         elif '/kloop' == command:
-            t_loop = threading.Thread(target=self.configuration.loop_msg)
+            t_loop = threading.Thread(target=self.configuration.loop_msg, args=(tripcode, id_sender))
             t_loop.start()
         elif '/kick' in message:
             t_adm_k = threading.Thread(target=self.admin.admin_kick, args=(message, name_sender, tripcode, id_sender))
@@ -163,4 +170,12 @@ class Module(object):
         elif'/room_info' in message:
             t_adm_description = threading.Thread(target=self.admin.setRomm_Description, args=(message, tripcode))
             t_adm_description.start()
+        elif '/pif' in message:
+            t_ghipy = threading.Thread(
+                target=self.social.gifid, args=(message, name_sender, id_sender))
+            t_ghipy.start()
+        # elif '/porn' in message:
+        #     t_ghipy = threading.Thread(
+        #         target=self.porn.gifporn, args=(message, name_sender, id_sender))
+        #     t_ghipy.start()
         return False

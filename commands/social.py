@@ -42,7 +42,7 @@ class Commands(object):
         if self.spam[commandName] == False:
             try:
                 self.post(
-                    message="|==Comandos==|\n |/help|\n |/gif naruto|\n |/add music(ID)|\n|/play|\n|/skip|\n|/pause|\n|/queue|\n|/help music|")
+                    message="|==Comandos==|\n |/help|\n |/gif naruto|\n |/add music(ID)|\n|/play|\n|/skip|\n|/pause|\n|/queue|\n|/help music|\n |/pif gif pv|\n |/Porn (off)|")
                 self.spam[commandName] = True
                 self.avoid_spam(commandName)
             except Exception as e:
@@ -69,5 +69,29 @@ class Commands(object):
                 url = list_gif[0]['media'][0]['mediumgif']['url']
             self.post(message='{}-@{}'.format(message, name_sender),
                       url='%s' % (url))
+            self.spam[commandName] = True
+            self.avoid_spam(commandName)
+
+    def gifid(self, message, name_sender, id_sender):
+        commandName = 'gif'
+        if self.spam[commandName] == False:
+            message = message[5:]
+
+            apikey = "LIVDSRZULELA"  # test value
+            lmt = 8
+            list_gif = []
+            # our test search
+            search_term = message
+
+            r = requests.get(
+                "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s" % (search_term, apikey, lmt))
+            if r.status_code == 200:
+                top_8gifs = json.loads(r.content)
+                maximo = len(top_8gifs['results']) - 1
+                x = randint(0, maximo)
+                list_gif.append(top_8gifs['results'][x])
+                url = list_gif[0]['media'][0]['mediumgif']['url']
+            self.post(message='{}'.format(message),
+                      url='{}'.format(url), to=id_sender)
             self.spam[commandName] = True
             self.avoid_spam(commandName)

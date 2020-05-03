@@ -11,6 +11,7 @@ from commands import social
 from commands import music
 from commands import admin
 from commands import configuration
+from commands import porn
 
 
 
@@ -22,12 +23,13 @@ if not os.path.isfile(file_name):
 	bot.login()
 	bot.save_cookie(file_name=file_name)
 	music
+porn = porn.Porn(file_name=file_name)
 configuration = configuration.Config(file_name=file_name)
 admin = admin.admininstrator(file_name=file_name)
 social = social.Commands(file_name=file_name)
 music = music.musicSistem(file_name=file_name)
-enter_room = module.Module(social=social ,music=music, admin=admin, configuration=configuration)
-url_room = 'https://drrr.com/room/?id=27d90vxyqF'
+enter_room = module.Module(social=social ,music=music, admin=admin, configuration=configuration, porn=porn)
+url_room = 'https://drrr.com/room/?id=ghhCXCrmMm'
 # main
 while True:
 	try:
