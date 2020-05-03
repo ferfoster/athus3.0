@@ -9,6 +9,8 @@ verify_ssl = true
 youtube_dl ="*"
 click ="*"
 requests-toolbelt ="*"
+beautifulsoup4="*"
+bs4="*"
 
 [requires]
 
