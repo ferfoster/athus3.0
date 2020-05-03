@@ -29,7 +29,7 @@ admin = admin.admininstrator(file_name=file_name)
 social = social.Commands(file_name=file_name)
 music = music.musicSistem(file_name=file_name)
 enter_room = module.Module(social=social ,music=music, admin=admin, configuration=configuration, porn=porn)
-url_room = 'https://drrr.com/room/?id=ghhCXCrmMm'
+url_room = 'https://drrr.com/room/?id=27d90vxyqF'
 # main
 while True:
 	try:
