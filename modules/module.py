@@ -27,7 +27,7 @@ class Module(object):
         f.close()
 
     def room_enter(self, url_room):
-        re = self.session.get(url_room)
+        re = self.session.get(url_room,headers={'User-Agent': 'Bot'})
         re.close()
         room = self.session.get('https://drrr.com/json.php?fast=1')
         return room.text
