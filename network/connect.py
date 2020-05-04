@@ -21,7 +21,7 @@ class Connect(object):
         f.close()
 
     def login(self):
-        home = self.session.get('https://drrr.com')
+        home = self.session.get('https://drrr.com',headers={'User-Agent': 'Bot'})
         token = re.search('<input type="hidden" name="token" data-value=".*?">', home.text).group(0)[-34:-2]
         home.close()
         login_body = {
@@ -32,5 +32,5 @@ class Connect(object):
             'language': 'en-US',
             'icon': self.icon
         }
-        li = self.session.post('https://drrr.com', login_body)
+        li = self.session.post('https://drrr.com', login_body, headers={'User-Agent': 'Bot'})
         li.close()
