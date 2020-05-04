@@ -12,7 +12,7 @@ class admininstrator(object):
     def __init__(self, file_name):
         self.session = requests.session()
         self.host = 'https://drrr.com/room/?ajax=1'
-        self.admin_list = ['kvh9Z.O9\/w', 'TqOzGmy5V.',
+        self.admin_list = ['SYnF2ejR16', 'TqOzGmy5V.',
             'YJMpA.Wge2', 'NICKx2f4bE', 'vaW3kagV3.','A5w2NY1dws','hbX\/xjnbYc','.NEAR.hyA6']
         self.admin = ''
         self.banido = ''
