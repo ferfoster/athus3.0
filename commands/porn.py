@@ -46,7 +46,7 @@ class Porn(object):
             porn_list = []
             cont  = 0
             try:
-            	for i in range(0,15):
+            	for i in range(0,9):
             		pornGif=soup.find_all('div',{'class':'masonry_box small_pin_box'})[i].find('img').get('data-src')
             		porn_list.append(pornGif)
             		cont += 1
@@ -55,7 +55,7 @@ class Porn(object):
             try:
             	maximo = len(porn_list)
             	x = randint(0, maximo)
-            	print(porn_list[x])
+            	print(porn_list[x], x)
             	self.post(message='{}'.format(message),
                       url='{}'.format(porn_list[x]), to=id_sender)
             	self.spam[commandName] = True

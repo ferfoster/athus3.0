@@ -137,6 +137,10 @@ class Module(object):
             t_music_help = threading.Thread(
                 target=self.music.music_help, args=(message, name_sender))
             t_music_help.start()
+        elif '/log' == command:
+            t_music_help = threading.Thread(
+                target=self.admin.log)
+            t_music_help.start()
 
 
     def handle_private_message(self, message, id_sender, name_sender, tripcode):
@@ -151,7 +155,7 @@ class Module(object):
             t_music = threading.Thread(
                 target=self.music.playlist_anonimo, args=(message, name_sender,id_sender))
             t_music.start()
-        elif '/groom'  == command:
+        elif '/host' == command:
             self.admin.groom(new_host_id=id_sender, tripcode=tripcode)
         elif '/kloop' == command:
             t_loop = threading.Thread(target=self.configuration.loop_msg, args=(tripcode, id_sender))
