@@ -13,7 +13,7 @@ class Commands(object):
     def __init__(self, file_name):
         self.session = requests.session()
         self.host = 'https://drrr.com/room/?ajax=1'
-        self.spam = {"gif": False, "help": False}
+        self.spam = {"gif": False, "help": False, "ship":False}
         self.file = open(file_name, 'r')
         self.session.cookies.update(eval(self.file.read()))
         self.file.close()
@@ -93,5 +93,32 @@ class Commands(object):
                 url = list_gif[0]['media'][0]['mediumgif']['url']
             self.post(message='{}'.format(message),
                       url='{}'.format(url), to=id_sender)
+            self.spam[commandName] = True
+            self.avoid_spam(commandName)
+
+
+    def ship(self, message, name_sender):
+        commandName = 'ship'
+        if self.spam[commandName] == False:
+            message = message[6:]
+            x = randint(0, 10)
+            ship = ""
+            switcher = {
+               0: "0%",
+               1: "10%",
+               2: "20%",
+               3: "30%",
+               4: "40%",
+               5: "50%",
+               6: "60%",
+               7: "70%",
+               8: "80%",
+               9: "90%",
+               10:"100%"
+            }
+            for i in range(0,x):
+                ship += "█"
+            total = switcher.get(x)
+            self.post(message='|Shipmetro|\n{}\n{}{}'.format(message,ship,total))
             self.spam[commandName] = True
             self.avoid_spam(commandName)

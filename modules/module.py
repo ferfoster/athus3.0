@@ -141,6 +141,10 @@ class Module(object):
             t_music_help = threading.Thread(
                 target=self.admin.log)
             t_music_help.start()
+        elif '/ship'in message:
+            t_music_help = threading.Thread(
+                target=self.social.ship, args=(message, name_sender))
+            t_music_help.start()
 
 
     def handle_private_message(self, message, id_sender, name_sender, tripcode):

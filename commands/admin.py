@@ -16,6 +16,7 @@ class admininstrator(object):
             'YJMpA.Wge2', 'NICKx2f4bE', 'vaW3kagV3.','A5w2NY1dws','hbX\/xjnbYc','.NEAR.hyA6']
         self.admin = ''
         self.banido = ''
+        self.ban = True
         self.file = open(file_name, 'r')
         self.session.cookies.update(eval(self.file.read()))
         self.file.close()
@@ -59,19 +60,6 @@ class admininstrator(object):
         lr = self.session.post(self.host, leave_body)
         lr.close()
 
-    def kick_room(self):
-        kick_body = {
-            'kick': 'kick'
-        }
-        kc = self.session.post(self.host, kick_body)
-        kc.close()
-
-    def ban_room(self, id_sender):
-        ban_body = {
-            'ban': id_sender
-        }
-        kc = self.session.post(self.host, kick_body)
-        kc.close()
 
     def new_host(self, new_host_id):
         new_host_body = {
@@ -114,6 +102,7 @@ class admininstrator(object):
                             break
 
     def admin_ban(self, message, name_sender, tripcode, id_sender):
+        self.ban = True
         for i in range(len(self.admin_list)):
             if tripcode == self.admin_list[i]:
                 if re.findall('/ban', message):
@@ -129,13 +118,18 @@ class admininstrator(object):
                         user.append(rooms)
                     for j in range(len(user)):
                         if user[j]['name'] == message:
-                            ban_body = {'ban': user[j]['id']}
-                            kc = self.session.post(
-                                self.host, ban_body)
-                            kc.close()
-                            self.admin = name_sender
-                            self.banido = message
-                            break
+                            for a in range(len(self.admin_list)):
+                                if user[j]['tripcode'] == self.admin_list[a]:
+                                    self.ban = False
+                                    self.post(message='Para de ser babacão', to=id_sender)
+                            if self.ban == True:
+                                ban_body = {'ban': user[j]['id']}
+                                kc = self.session.post(
+                                    self.host, ban_body)
+                                kc.close()
+                                self.admin = name_sender
+                                self.banido = message
+                                break
 
 
     def log(self):
