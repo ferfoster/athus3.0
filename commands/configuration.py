@@ -41,7 +41,7 @@ class Config(object):
         commandName = 'admin'
         if self.spam[commandName] == False:
             self.post(
-                message="|==ADMIN==|\n |/adm_list| \n |/kick name|\n |/ban name|\n |/room_name Name_room|\n |/room_info Description|\n |/host|\n|/log|")
+                message="|==ADMIN==|\n |/admin_list| \n |/kick name|\n |/ban name|\n |/room_name Name_room|\n |/room_info Description|\n |/host|\n|/log|")
             self.spam[commandName] = True
             self.avoid_spam(commandName)
 
