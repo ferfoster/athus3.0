@@ -13,7 +13,7 @@ class admininstrator(object):
         self.session = requests.session()
         self.host = 'https://drrr.com/room/?ajax=1'
         self.admin_list = ['SYnF2ejR16', 'TqOzGmy5V.',
-            'YJMpA.Wge2', 'NICKx2f4bE', 'vaW3kagV3.','A5w2NY1dws','hbX\/xjnbYc','.NEAR.hyA6']
+            'YJMpA.Wge2', 'NICKx2f4bE', 'vaW3kagV3.','A5w2NY1dws','QPhzQj7oBc','.NEAR.hyA6']
         self.admin = ''
         self.banido = ''
         self.ban = True
